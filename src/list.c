@@ -13,11 +13,20 @@ struct LinkedList *createlist() {
   return list;
 }
 
-void *deletelist(struct LinkedList *list, int index) {
+void *deletelist(struct LinkedList *list) {
   if (list == NULL) {
     return NULL;
   }
-  return NULL;
+  struct Node *node = list->head;
+  struct Node *nextnode = list->head->next;
+  while (nextnode != NULL) {
+    free(node);
+    node = nextnode;
+    nextnode = node->next;
+  }
+  free(node);
+  free(list);
+  return 0;
 }
 
 void *addtolist(struct LinkedList *list, void *value) {
@@ -36,6 +45,14 @@ void *addtolist(struct LinkedList *list, void *value) {
     list->size++;
     return 0;
   }
+  struct Node *node = malloc(sizeof(struct Node));
+  if (node == NULL) {
+    return NULL;
+  }
+  node->value = value;
+  node->next = NULL;
+  list->tail->next = node;
+  list->tail = node;
   return 0;
 }
 

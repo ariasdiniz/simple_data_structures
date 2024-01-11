@@ -3,7 +3,7 @@
 
 struct Node {
   void *value;
-  struct LinkedList *next;
+  struct Node *next;
 };
 
 struct LinkedList {
@@ -13,7 +13,7 @@ struct LinkedList {
 };
 
 struct LinkedList *createlist();
-void *deletelist(struct LinkedList *list, int index);
+void *deletelist(struct LinkedList *list);
 void *addtolist(struct LinkedList *list, void *value);
 void *getfromindex(struct LinkedList *list, int index);
 void *removefromindex(struct LinkedList *list, int index);
