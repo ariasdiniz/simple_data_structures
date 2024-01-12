@@ -46,18 +46,37 @@ void *addtolist(struct LinkedList *list, void *value) {
     return 0;
   }
   struct Node *node = malloc(sizeof(struct Node));
+  struct Node *temp;
   if (node == NULL) {
     return NULL;
   }
+  temp = list->head;
+  while (1) {
+    if (temp->next == NULL) {
+      break;
+    }
+    temp = temp->next;
+  }
   node->value = value;
   node->next = NULL;
-  list->tail->next = node;
-  list->tail = node;
+  temp->next = node;
+  list->size++;
   return 0;
 }
 
 void *getfromindex(struct LinkedList *list, int index) {
-  // Implement me
+  if (index > list->size - 1 || index < 0) {
+    return NULL;
+  }
+  struct Node *node = malloc(sizeof(struct Node));
+  if (node == NULL) {
+    return NULL;
+  }
+  node = list->head;
+  for (int i=0; i < index; i++) {
+    node = node->next;
+  }
+  return node->value;
 }
 
 void *removefromindex(struct LinkedList *list, int index) {
