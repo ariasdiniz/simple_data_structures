@@ -29,6 +29,10 @@ void *deletelist(struct LinkedList *list) {
   if (list == NULL) {
     return NULL;
   }
+  if (list->size == 0) {
+    free(list);
+    return 0;
+  }
   struct Node *node = list->head;
   struct Node *nextnode = list->head->next;
   while (nextnode != NULL) {
@@ -91,7 +95,7 @@ void *addtolist(struct LinkedList *list, void *value) {
   @returns Returns a pointer to the value of the index. Return NULL in case of error.
 */
 void *getfromindex(struct LinkedList *list, int index) {
-  if (index > list->size - 1 || index < 0) {
+  if (list == NULL || index > list->size - 1 || index < 0) {
     return NULL;
   }
   struct Node *node = malloc(sizeof(struct Node));
@@ -118,6 +122,12 @@ void *removefromindex(struct LinkedList *list, int index) {
   }
   struct Node *node = list->head;
   struct Node *temp;
+  if (index == 0) {
+    list->head = node->next;
+    free(node);
+    list->size--;
+    return 0;
+  }
   for (int i=0; i < index; i++) {
     temp = node;
     node = node->next;
