@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*
+  Create a new LinkedList.
+
+  @return struct LinkedList* A pointer to the newly created LinkedList.
+  Don't forget to free memory after usage with deletelist(list).
+*/
 struct LinkedList *createlist() {
   struct LinkedList *list = malloc(sizeof(struct LinkedList));
   if (list == NULL) {
@@ -13,6 +19,12 @@ struct LinkedList *createlist() {
   return list;
 }
 
+/*
+  Free the memory allocated by createlist().
+
+  @param list A pointer to a LinkedList.
+  @return void* Returns 0 when successful. NULL when the list param is NULL.
+*/
 void *deletelist(struct LinkedList *list) {
   if (list == NULL) {
     return NULL;
@@ -29,6 +41,13 @@ void *deletelist(struct LinkedList *list) {
   return 0;
 }
 
+/*
+  Add a new element at the bottom of the list.
+
+  @param list A pointer to a LinkedList.
+  @param value A void pointer to the value to be added to the list.
+  @return Returns 0 if successful. Returns NULL when an error occur.
+*/
 void *addtolist(struct LinkedList *list, void *value) {
   if (list == NULL) {
     return NULL;
@@ -64,6 +83,13 @@ void *addtolist(struct LinkedList *list, void *value) {
   return 0;
 }
 
+/*
+  Gets the value of an specific index in the provided list.
+
+  @param list A pointer to a LinkedList.
+  @param index An integer representing the index.
+  @returns Returns a pointer to the value of the index. Return NULL in case of error.
+*/
 void *getfromindex(struct LinkedList *list, int index) {
   if (index > list->size - 1 || index < 0) {
     return NULL;
@@ -79,6 +105,13 @@ void *getfromindex(struct LinkedList *list, int index) {
   return node->value;
 }
 
+/*
+  Remove an index from the provided list.
+
+  @param list A pointer to a LinkedList.
+  @param index An integer representing the index to be removed.
+  @return Return 0 when successful. Return NULL in case of error.
+*/
 void *removefromindex(struct LinkedList *list, int index) {
   if (list == NULL || index >= list->size || index < 0) {
     return NULL;
