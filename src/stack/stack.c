@@ -1,19 +1,6 @@
 #include "stack.h"
 #include <stdlib.h>
 
-struct StackItem {
-  void *value;
-  struct StackItem *next;
-};
-
-/*
-  The Stack data structure.
-*/
-struct Stack {
-  struct StackItem *top;
-  int size;
-};
-
 struct Stack *createstack() {
   struct Stack *stack = malloc(sizeof(struct Stack));
   if (stack == NULL) {
@@ -23,7 +10,7 @@ struct Stack *createstack() {
   stack->top = NULL;
 }
 
-void *destroystack(struct Stack *stack) {
+void *deletestack(struct Stack *stack) {
   if (stack == NULL) {
     return NULL;
   }
@@ -40,4 +27,29 @@ void *destroystack(struct Stack *stack) {
   }
   free(stack);
   return 0;
+}
+
+void *addtostack(struct Stack *stack, void *value) {
+  if (stack == NULL || value == NULL) {
+    return NULL;
+  }
+  struct StackItem *item = malloc(sizeof(struct StackItem));
+  if (item == NULL) {
+    return NULL;
+  }
+  item->next = stack->top;
+  item->value = value;
+  stack->top = item;
+  stack->size++;
+  return 0;
+}
+
+void *popfromstack(struct Stack *stack) {
+  if (stack == NULL || stack->size == 0) {
+    return NULL;
+  }
+  struct StackItem *item = stack->top;
+  stack->top = stack->top->next;
+  stack->size--;
+  return item->value;
 }

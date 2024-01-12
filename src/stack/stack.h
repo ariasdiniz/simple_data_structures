@@ -1,6 +1,22 @@
 #ifndef ARIA_DATA_STRUCTURES_STACK_H
 #define ARIA_DATA_STRUCTURES_STACK_H
 
-struct Stack;
+struct StackItem {
+  void *value;
+  struct StackItem *next;
+};
+
+/*
+  The Stack data structure.
+*/
+struct Stack {
+  struct StackItem *top;
+  int size;
+};
+
+struct Stack *createstack();
+void *deletestack(struct Stack *stack);
+void *addtostack(struct Stack *stack, void *value);
+void *popfromstack(struct Stack *stack);
 
 #endif // ARIA_DATA_STRUCTURES_STACK_H

@@ -1,5 +1,5 @@
-#ifndef GENERIC_LINKED_LIST_H
-#define GENERIC_LINKED_LIST_H
+#ifndef ARIA_DATA_STRUCTURES_H
+#define ARIA_DATA_STRUCTURES'_H
 #include "src/linkedlist/list.h"
 #include "src/stack/stack.h"
-#endif //GENERIC_LINKED_LIST_H
+#endif // ARIA_DATA_STRUCTURES_H
