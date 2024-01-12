@@ -1,3 +1,3 @@
-# Aria's Linked List
+# Aria's Data Structures
 
-This library will provide an implementation for a simple Linked List
+This library will provide an implementation for data structures in C
