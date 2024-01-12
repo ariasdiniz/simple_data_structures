@@ -80,5 +80,17 @@ void *getfromindex(struct LinkedList *list, int index) {
 }
 
 void *removefromindex(struct LinkedList *list, int index) {
-  // Implement me
+  if (list == NULL || index >= list->size || index < 0) {
+    return NULL;
+  }
+  struct Node *node = list->head;
+  struct Node *temp;
+  for (int i=0; i < index; i++) {
+    temp = node;
+    node = node->next;
+  }
+  temp->next = node->next;
+  free(node);
+  list->size--;
+  return 0;
 }
