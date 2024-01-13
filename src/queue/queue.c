@@ -47,6 +47,7 @@ void *addtoqueue(struct Queue *queue, void *value) {
   item->next = queue->last;
   queue->last->prev = item;
   queue->last = item;
+  queue->size++;
   return 0;
 }
 
