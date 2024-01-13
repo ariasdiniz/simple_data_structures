@@ -1,5 +1,5 @@
-#ifndef GENERIC_LINKED_LIST_LIST_H
-#define GENERIC_LINKED_LIST_LIST_H
+#ifndef ARIA_DATA_STRUCTURES_LIST_H
+#define ARIA_DATA_STRUCTURES_LIST_H
 
 struct Node {
   void *value;
@@ -18,4 +18,4 @@ void *addtolist(struct LinkedList *list, void *value);
 void *getfromindex(struct LinkedList *list, int index);
 void *removefromindex(struct LinkedList *list, int index);
 
-#endif // GENERIC_LINKED_LIST_LIST_H
+#endif // ARIA_DATA_STRUCTURES_LIST_H

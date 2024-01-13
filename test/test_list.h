@@ -1,3 +1,6 @@
+#ifndef ARIA_DATA_STRUCTURES_TEST_LIST
+#define ARIA_DATA_STRUCTURES_TEST_LIST
+
 #include "../src/linkedlist/list.h"
 #include <assert.h>
 #include <stdio.h>
@@ -110,12 +113,14 @@ void test_removefromindex() {
   printf("test_removefromindex passed\n");
 }
 
-int main() {
+void runlisttests() {
+  printf("----------STARTING LINKED LIST TESTS----------\n");
   test_createlist();
   test_deletelist();
   test_addtolist();
   test_getfromindex();
   test_removefromindex();
-  printf("All tests passed\n");
-  return 0;
+  printf("---------FINISHING LINKED LIST TESTS----------\n");
 }
+
+#endif //ARIA_DATA_STRUCTURES_TEST_LIST_H

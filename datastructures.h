@@ -1,4 +1,6 @@
-#ifndef GENERIC_LINKED_LIST_H
-#define GENERIC_LINKED_LIST_H
+#ifndef ARIA_DATA_STRUCTURES_H
+#define ARIA_DATA_STRUCTURES_H
 #include "src/linkedlist/list.h"
-#endif //GENERIC_LINKED_LIST_H
+#include "src/stack/stack.h"
+#include "src/queue/queue.h"
+#endif // ARIA_DATA_STRUCTURES_H
