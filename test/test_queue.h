@@ -39,8 +39,8 @@ void test_popfromqueue() {
   int secondValue = 20;
   addtoqueue(queue, &secondValue);
 
-  struct QueueItem *poppedItem = popfromqueue(queue);
-  assert(poppedItem->value == &value);
+  void *poppedItem = popfromqueue(queue);
+  assert(poppedItem == &value);
   assert(queue->size == 1);
   assert(queue->first != NULL);
 

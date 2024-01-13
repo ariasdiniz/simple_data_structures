@@ -60,9 +60,9 @@ void *popfromqueue(struct Queue *queue) {
     queue->first == NULL;
     queue->last == NULL;
     queue->size--;
-    return item;
+    return item->value;
   }
   queue->first = item->prev;
   queue->size--;
-  return item;
+  return item->value;
 }
