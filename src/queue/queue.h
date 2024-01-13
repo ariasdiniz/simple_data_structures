@@ -4,6 +4,7 @@
 struct QueueItem {
   void *value;
   struct QueueItem *next;
+  struct QueueItem *prev;
 };
 
 struct Queue {
@@ -12,9 +13,9 @@ struct Queue {
   int size;
 };
 
-void *createqueue();
-void *deletequeue();
-void *addtoqueue();
-void *popfromqueue();
+struct Queue *createqueue();
+void *deletequeue(struct Queue *queue);
+void *addtoqueue(struct Queue *queue, void *value);
+void *popfromqueue(struct Queue *queue);
 
 #endif // ARIA_DATA_STRUCTURES_QUEUE_H
