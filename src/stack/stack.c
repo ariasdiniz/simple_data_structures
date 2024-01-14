@@ -49,7 +49,9 @@ void *popfromstack(struct Stack *stack) {
     return NULL;
   }
   struct StackItem *item = stack->top;
+  void *value = item->value;
   stack->top = stack->top->next;
   stack->size--;
-  return item->value;
+  free(item);
+  return value;
 }

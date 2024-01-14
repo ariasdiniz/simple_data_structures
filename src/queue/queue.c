@@ -56,13 +56,16 @@ void *popfromqueue(struct Queue *queue) {
     return 0;
   }
   struct QueueItem *item = queue->first;
+  void *value = item->value;
   if (item == queue->last) {
     queue->first == NULL;
     queue->last == NULL;
     queue->size--;
-    return item->value;
+    free(item);
+    return value;
   }
   queue->first = item->prev;
   queue->size--;
-  return item->value;
+  free(item);
+  return value;
 }
