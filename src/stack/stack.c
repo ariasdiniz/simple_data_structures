@@ -52,7 +52,7 @@ void *deletestack(struct Stack *stack) {
   or in case of error in memory allocation.
 */
 void *addtostack(struct Stack *stack, void *value) {
-  if (stack == NULL || value == NULL) {
+  if (stack == NULL) {
     return NULL;
   }
   struct StackItem *item = malloc(sizeof(struct StackItem));

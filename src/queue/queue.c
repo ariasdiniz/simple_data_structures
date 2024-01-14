@@ -49,7 +49,7 @@ void *deletequeue(struct Queue *queue) {
   or in case of error in memory allocation.
 */
 void *addtoqueue(struct Queue *queue, void *value) {
-  if (queue == NULL || value == NULL) {
+  if (queue == NULL) {
     return NULL;
   }
   struct QueueItem *item = malloc(sizeof(struct QueueItem));
