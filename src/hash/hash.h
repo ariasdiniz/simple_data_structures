@@ -9,8 +9,8 @@ struct HashItem {
   struct LinkedList *list;
 };
 
-struct HashTable {
+typedef struct HashTable {
   struct HashItem *bucket[ARIA_DATA_STRUCTURES_HASH_MAX_SIZE];
-};
+} HashTable;
 
 #endif // ARIA_DATA_STRUCTURES_HASH_H

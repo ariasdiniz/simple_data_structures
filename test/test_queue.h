@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 void test_createqueue() {
-  struct Queue *queue = createqueue();
+  Queue *queue = createqueue();
   assert(queue != NULL);
   assert(queue->size == 0);
   assert(queue->first == NULL);
@@ -17,7 +17,7 @@ void test_createqueue() {
 }
 
 void test_addtoqueue() {
-  struct Queue *queue = createqueue();
+  Queue *queue = createqueue();
   int value = 10;
   addtoqueue(queue, &value);
   assert(queue->first == queue->last);
@@ -33,7 +33,7 @@ void test_addtoqueue() {
 }
 
 void test_popfromqueue() {
-  struct Queue *queue = createqueue();
+  Queue *queue = createqueue();
   int value = 10;
   addtoqueue(queue, &value);
   int secondValue = 20;
@@ -49,7 +49,7 @@ void test_popfromqueue() {
 }
 
 void test_deletequeue() {
-  struct Queue *queue = createqueue();
+  Queue *queue = createqueue();
   assert(deletequeue(queue) == 0);
   printf("test_deletequeue passed\n");
 }

@@ -6,11 +6,11 @@ struct Node {
   struct Node *next;
 };
 
-struct LinkedList {
+typedef struct LinkedList {
   struct Node *head;
   struct Node *tail;
   int size;
-};
+} LinkedList;
 
 struct LinkedList *createlist();
 void *deletelist(struct LinkedList *list);

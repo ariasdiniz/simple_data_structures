@@ -7,11 +7,11 @@ struct QueueItem {
   struct QueueItem *prev;
 };
 
-struct Queue {
+typedef struct Queue {
   struct QueueItem *first;
   struct QueueItem *last;
   int size;
-};
+} Queue;
 
 struct Queue *createqueue();
 void *deletequeue(struct Queue *queue);
