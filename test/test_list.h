@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 void test_createlist() {
-  struct LinkedList *list = createlist();
+  LinkedList *list = createlist();
   assert(list != NULL);
   assert(list->head == NULL);
   assert(list->tail == NULL);
@@ -17,11 +17,11 @@ void test_createlist() {
 
 void test_deletelist() {
   // Test deletion on an empty list
-  struct LinkedList *emptyList = createlist();
+  LinkedList *emptyList = createlist();
   assert(deletelist(emptyList) == 0);
 
   // Test deletion on a list with multiple elements
-  struct LinkedList *list = createlist();
+  LinkedList *list = createlist();
   int values[] = {10, 20, 30};
   for (int i = 0; i < 3; i++) {
   addtolist(list, &values[i]);
@@ -35,7 +35,7 @@ void test_deletelist() {
 }
 
 void test_addtolist() {
-  struct LinkedList *list = createlist();
+  LinkedList *list = createlist();
   int value = 10;
   int nullValue = NULL;
 
@@ -58,7 +58,7 @@ void test_addtolist() {
 }
 
 void test_getfromindex() {
-  struct LinkedList *list = createlist();
+  LinkedList *list = createlist();
   int values[] = {10, 20, 30};
   for (int i = 0; i < 3; i++) {
   addtolist(list, &values[i]);
@@ -82,7 +82,7 @@ void test_getfromindex() {
 }
 
 void test_removefromindex() {
-  struct LinkedList *list = createlist();
+  LinkedList *list = createlist();
   int values[] = {10, 20, 30};
   for (int i = 0; i < 3; i++) {
   addtolist(list, &values[i]);
@@ -94,7 +94,7 @@ void test_removefromindex() {
   assert(removefromindex(list, 0) == 0); // Now last
 
   // Test removing from list with one element
-  struct LinkedList *singleItemList = createlist();
+  LinkedList *singleItemList = createlist();
   int singleValue = 40;
   addtolist(singleItemList, &singleValue);
   assert(removefromindex(singleItemList, 0) == 0);

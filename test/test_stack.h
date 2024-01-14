@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 void test_createstack() {
-  struct Stack *stack = createstack();
+  Stack *stack = createstack();
   assert(stack != NULL);  // Check if stack is created
   assert(stack->size == 0);  // Initial size should be 0
   assert(stack->top == NULL);  // Top should be NULL initially
@@ -13,7 +13,7 @@ void test_createstack() {
 }
 
 void test_deletestack() {
-  struct Stack *stack = createstack();
+  Stack *stack = createstack();
   deletestack(stack);  // Should be able to delete an empty stack
 
   stack = createstack();
@@ -23,7 +23,7 @@ void test_deletestack() {
 }
 
 void test_addtostack() {
-  struct Stack *stack = createstack();
+  Stack *stack = createstack();
   int value = 10;
   addtostack(stack, &value);
   assert(stack->size == 1);  // Size should be 1 after adding
@@ -33,7 +33,7 @@ void test_addtostack() {
 }
 
 void test_popfromstack() {
-  struct Stack *stack = createstack();
+  Stack *stack = createstack();
   int value = 10;
   addtostack(stack, &value);
   int *poppedValue = popfromstack(stack);

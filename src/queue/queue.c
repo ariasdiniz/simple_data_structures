@@ -1,6 +1,12 @@
 #include "queue.h"
 #include <stdlib.h>
 
+/*
+  Create a new Queue.
+
+  @return Return a pointer to the newly created Queue.
+  Don't forget to free memory after usage with deletequeue(queue).
+*/
 struct Queue *createqueue() {
   struct Queue *queue = malloc(sizeof(struct Queue));
   if (queue == NULL) {
@@ -12,6 +18,14 @@ struct Queue *createqueue() {
   return queue;
 }
 
+/*
+  Safely delete the queue freeing the memory.
+  If you used this structure to store in the values pointers for
+  other manually allocated memory adresses, please free all pointers
+  before calling this method.
+  @param queue A pointer to a Queue.
+  @return Return 0 when successful. Return NULL if queue is empty or NULL.
+*/
 void *deletequeue(struct Queue *queue) {
   if (queue == NULL || queue->size == 0) {
     return NULL;
@@ -27,8 +41,15 @@ void *deletequeue(struct Queue *queue) {
   return 0;
 }
 
+/*
+  Add a new element to the queue.
+  @param queue A pointer to a Queue.
+  @param value A pointer to a value to be stored.
+  @return Return 0 if successful. Return NULL if queue is NULL or empty,
+  or in case of error in memory allocation.
+*/
 void *addtoqueue(struct Queue *queue, void *value) {
-  if (queue == NULL || value == NULL) {
+  if (queue == NULL) {
     return NULL;
   }
   struct QueueItem *item = malloc(sizeof(struct QueueItem));
@@ -51,18 +72,28 @@ void *addtoqueue(struct Queue *queue, void *value) {
   return 0;
 }
 
+/*
+  Removes the first element of the queue and return a pointer to it's value.
+  Don't forget to free this pointer afterward, if it point to a manually
+  allocated memory address.
+  @param queue A pointer to a queue.
+  @return A pointer to the value stored. Return NULL if the queue is empty.
+*/
 void *popfromqueue(struct Queue *queue) {
   if (queue == NULL) {
     return 0;
   }
   struct QueueItem *item = queue->first;
+  void *value = item->value;
   if (item == queue->last) {
     queue->first == NULL;
     queue->last == NULL;
     queue->size--;
-    return item->value;
+    free(item);
+    return value;
   }
   queue->first = item->prev;
   queue->size--;
-  return item->value;
+  free(item);
+  return value;
 }

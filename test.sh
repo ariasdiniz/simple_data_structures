@@ -2,6 +2,7 @@
 
 # Created by Aria Diniz on January 5, 2024
 # This script was created with the objective of simplifying the compilation of C programs from command line.
+# Created for GCC compiler on Linux. Can be used for other compilers and OSs with minor modifications.
 
 # Directory with the files to compile. It will search for files with extension .c and .h on every dir 
 # inside this directory.

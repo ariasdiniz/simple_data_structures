@@ -9,10 +9,10 @@ struct StackItem {
 /*
   The Stack data structure.
 */
-struct Stack {
+typedef struct Stack {
   struct StackItem *top;
   int size;
-};
+} Stack;
 
 struct Stack *createstack();
 void *deletestack(struct Stack *stack);
