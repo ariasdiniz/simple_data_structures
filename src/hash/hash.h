@@ -4,16 +4,13 @@
 #define ARIA_DATA_STRUCTURES_HASH_MAX_SIZE 1000
 #include "../linkedlist/list.h"
 
-struct HashItem {
-  int index;
-  LinkedList *list;
-};
-
 typedef struct HashTable {
-  struct HashItem *bucket[ARIA_DATA_STRUCTURES_HASH_MAX_SIZE];
+  LinkedList *bucket[ARIA_DATA_STRUCTURES_HASH_MAX_SIZE];
 } HashTable;
 
 HashTable *createhash();
-HashTable *deletehash(HashTable *hash);
+void *deletehash(HashTable *hash);
+char *getfromhash(HashTable *hash, char *key);
+void * addtohash(HashTable *hash, char *key, char *value);
 
 #endif // ARIA_DATA_STRUCTURES_HASH_H
