@@ -1,5 +1,11 @@
 #include "hash.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+typedef struct KeyValue {
+  char *key;
+  char *value;
+} KeyValue;
 
 HashTable *createhash() {
   HashTable *hash = malloc(sizeof(HashTable) * ARIA_DATA_STRUCTURES_HASH_MAX_SIZE);
@@ -16,7 +22,15 @@ HashTable *deletehash(HashTable *hash) {
   if (hash == NULL) {
     return NULL;
   }
+  LinkedList *list;
   for (int i=0; i<ARIA_DATA_STRUCTURES_HASH_MAX_SIZE; i++) {
+    list = hash->bucket[i]->list;
+    if (hash->bucket[i] != NULL) {
+      for (int i=0; i<list->size; i++) {
+        free(getfromindex(list, i));
+      }
+      deletelist(list);
+    }
     free(hash->bucket[i]);
   }
   free(hash);
@@ -31,13 +45,19 @@ unsigned int hashfunc(char *str) {
     return hashValue % ARIA_DATA_STRUCTURES_HASH_MAX_SIZE;
 }
 
-void *addtohash(HashTable *hash, char *value) {
+void *addtohash(HashTable *hash, char *key, char *value) {
   if (hash == NULL) {
     return NULL;
   }
-  LinkedList *temp = hash->bucket[hashfunc(value)];
-  unsigned int index = hashfunc(value);
+  unsigned int index = hashfunc(key);
+  LinkedList *temp = hash->bucket[index];
+  KeyValue *kv = malloc(sizeof(KeyValue));
+  if (kv == NULL) {
+    return NULL;
+  }
+  kv->key = key;
+  kv->value = value;
   hash->bucket[index] = temp == NULL ? createlist() : temp;
-  addtolist(hash->bucket[index], value);
-  return index;
+  addtolist(hash->bucket[index], kv);
+  return 0;
 }
