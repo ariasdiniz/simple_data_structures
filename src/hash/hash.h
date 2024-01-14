@@ -6,11 +6,14 @@
 
 struct HashItem {
   int index;
-  struct LinkedList *list;
+  LinkedList *list;
 };
 
 typedef struct HashTable {
   struct HashItem *bucket[ARIA_DATA_STRUCTURES_HASH_MAX_SIZE];
 } HashTable;
+
+HashTable *createhash();
+HashTable *deletehash(HashTable *hash);
 
 #endif // ARIA_DATA_STRUCTURES_HASH_H
