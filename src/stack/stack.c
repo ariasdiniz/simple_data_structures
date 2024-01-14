@@ -14,6 +14,7 @@ struct Stack *createstack() {
   }
   stack->size = 0;
   stack->top = NULL;
+  return stack;
 }
 
 /*
