@@ -68,17 +68,13 @@ char *getfromhash(HashTable *hash, char *key) {
     return NULL;
   }
   unsigned int index = hashfunc(key);
-  printf("%d\n", index);
   LinkedList *item = hash->bucket[index];
-  char *value;
-  char *vkey;
-  if (item == NULL) {
-    return NULL;
-  }
+  KeyValue *value;
+  printf("before loop\n");
   for (int i=0; i<item->size;i++) {
-    value = ((KeyValue *)getfromindex(item, i))->value;
-    vkey = ((KeyValue *)getfromindex(item, i))->value;
-    if (strcmp(vkey, key)) {
+    value = getfromindex(item, i);
+    printf("%s\n", value->key);
+    if (strcmp(value->key, key)) {
       return value;
     }
   }

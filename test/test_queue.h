@@ -50,7 +50,8 @@ void test_popfromqueue() {
 
 void test_deletequeue() {
   Queue *queue = createqueue();
-  assert(deletequeue(queue) == 0);
+  addtoqueue(queue, 0);
+  assert((int)deletequeue(queue) == 0);
   printf("test_deletequeue passed\n");
 }
 
