@@ -25,15 +25,18 @@ void *deletehash(HashTable *hash) {
     return NULL;
   }
   LinkedList *list;
+  KeyValue *kv;
   for (int i = 0; i < ARIA_DATA_STRUCTURES_HASH_MAX_SIZE; i++) {
     list = hash->bucket[i];
     if (hash->bucket[i] != NULL) {
       for (int j = 0; j < list->size; j++) {
-        free(getfromindex(list, j));
+        kv = getfromindex(list, j);
+        free(kv->key);
+        free(kv->value);
+        free(kv);
       }
       deletelist(list);
     }
-    free(hash->bucket[i]);
   }
   free(hash);
   return 0;
@@ -52,6 +55,7 @@ void *addtohash(HashTable *hash, char *key, char *value) {
     return NULL;
   }
   unsigned int index = hashfunc(key);
+  printf("i: %d\n", index);
   LinkedList *temp = hash->bucket[index];
   KeyValue *kv = malloc(sizeof(KeyValue));
   if (kv == NULL) {
@@ -69,7 +73,12 @@ char *getfromhash(HashTable *hash, char *key) {
     return NULL;
   }
   unsigned int index = hashfunc(key);
+  printf("i: %d\n", index);
   LinkedList *item = hash->bucket[index];
+  if (item == NULL) {
+    printf("Empty item\n");
+    return NULL;
+  }
   void *value;
   for (int i = 0; i < item->size; i++) {
     value = getfromindex(item, i);
