@@ -28,8 +28,12 @@ struct Queue *createqueue() {
   @return Return 0 when successful. Return -1 if queue is empty or NULL.
 */
 void *deletequeue(struct Queue *queue) {
-  if (queue == NULL || queue->size == 0) {
+  if (queue == NULL) {
     return -1;
+  }
+  if (queue->size == 0) {
+    free(queue);
+    return 0;
   }
   struct QueueItem *next;
   struct QueueItem *actual = queue->last;
