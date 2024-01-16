@@ -17,7 +17,8 @@ void test_deletestack() {
   deletestack(stack);  // Should be able to delete an empty stack
 
   stack = createstack();
-  addtostack(stack, malloc(sizeof(int)));  // Add an item
+  int i = 1;
+  addtostack(stack, i);  // Add an item
   deletestack(stack);  // Should be able to delete a non-empty stack
   printf("test_deletestack passed\n");
 }
