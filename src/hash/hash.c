@@ -75,7 +75,6 @@ void *addtohash(HashTable *hash, char *key, char *value) {
     return -1;
   }
   unsigned int index = hashfunc(key);
-  printf("i: %d\n", index);
   LinkedList *temp = hash->bucket[index];
   KeyValue *kv = malloc(sizeof(KeyValue));
   if (kv == NULL) {
@@ -100,7 +99,6 @@ char *getfromhash(HashTable *hash, char *key) {
     return -1;
   }
   unsigned int index = hashfunc(key);
-  printf("i: %d\n", index);
   LinkedList *item = hash->bucket[index];
   if (item == NULL) {
     return -1;
