@@ -41,8 +41,8 @@ void test_getfromhash() {
   char *value = getfromhash(hash, "key1");
   assert(value != -1 && strcmp(value, "value1") == 0);
   value = getfromhash(hash, "nonexistent");
-  assert(value == -1);
-  assert(getfromhash(NULL, "key1") == -1);
+  assert(strcmp(value, "\0") == 0);
+  assert(strcmp(getfromhash(NULL, "key1"), "\0") == 0);
   teardown(hash);
   printf("test_getfromhash passed\n");
 }
