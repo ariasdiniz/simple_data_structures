@@ -1,13 +1,19 @@
+/**
+ * @file graph.c
+ * @brief Implementation of a simple graph data structure.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "graph.h"
 
-typedef struct {
-  int id;
-  void *value;
-  LinkedList *edges;
-} vertex;
-
+/**
+ * @brief Creates a new graph.
+ * 
+ * Allocates memory for a new graph structure and initializes it with an empty list of vertices.
+ * 
+ * @return A pointer to the newly created graph, or NULL if memory allocation fails.
+ */
 graph *create_graph() {
   graph *g = malloc(sizeof(graph));
   if (g == NULL) {
@@ -17,6 +23,15 @@ graph *create_graph() {
   return g;
 }
 
+/**
+ * @brief Adds a vertex to the graph.
+ * 
+ * Allocates memory for a new vertex, assigns it a unique ID, and adds it to the graph's list of vertices.
+ * 
+ * @param graph Pointer to the graph structure.
+ * @param value Pointer to the value to be stored in the new vertex.
+ * @return The ID of the newly added vertex, or -1 if memory allocation fails.
+ */
 int add_vertex(graph *graph, void *value) {
   vertex *v = malloc(sizeof(vertex));
   if (v == NULL) {
@@ -29,12 +44,25 @@ int add_vertex(graph *graph, void *value) {
   return v->id;
 }
 
+/**
+ * @brief Adds an undirected edge between two vertices in the graph.
+ * 
+ * Adds an edge between two vertices identified by their IDs. The edge is added to both vertices' edge lists.
+ * 
+ * @param graph Pointer to the graph structure.
+ * @param id_v1 ID of the first vertex.
+ * @param id_v2 ID of the second vertex.
+ * @return 0 if the edge is successfully added, -1 if either vertex ID is invalid or if the edge is a self-loop.
+ */
 int add_edge(graph *graph, int id_v1, int id_v2) {
+  if (id_v1 == id_v2) {
+    return -1; // Self-loop not allowed
+  }
   vertex *v1 = (vertex *)getfromindex(graph->vertexes, id_v1);
   vertex *v2 = (vertex *)getfromindex(graph->vertexes, id_v2);
 
   if (*(int *)v1 == -1 || *(int *)v2 == -1) {
-    return -1;
+    return -1; // Invalid vertex ID
   }
 
   addtolist(v1->edges, v2);
@@ -43,15 +71,13 @@ int add_edge(graph *graph, int id_v1, int id_v2) {
   return 0;
 }
 
-void print_edge_single_vertex(vertex *v) {
-  int size = v->edges->size;
-  vertex *temp;
-  for (int i = 0; i < size; i++) {
-    temp = (vertex *)getfromindex(v->edges, i);
-    printf("id: %d | ", temp->id);
-  }
-}
-
+/**
+ * @brief Prints the adjacency list representation of the graph.
+ * 
+ * Prints the ID of each vertex followed by the IDs of its adjacent vertices.
+ * 
+ * @param graph Pointer to the graph structure.
+ */
 void print_edges(graph *graph) {
   vertex *v;
   for (int i = 0; i < graph->vertexes->size; i++) {
@@ -62,6 +88,30 @@ void print_edges(graph *graph) {
   }
 }
 
+/**
+ * @brief Prints the adjacent vertices of a single vertex.
+ * 
+ * Prints the IDs of the vertices adjacent to the given vertex.
+ * 
+ * @param v Pointer to the vertex.
+ */
+void print_edge_single_vertex(vertex *v) {
+  int size = v->edges->size;
+  vertex *temp;
+  for (int i = 0; i < size; i++) {
+    temp = (vertex *)getfromindex(v->edges, i);
+    printf("id: %d | ", temp->id);
+  }
+}
+
+/**
+ * @brief Deletes the graph and frees allocated memory.
+ * 
+ * Frees memory allocated for each vertex and the graph structure itself.
+ * 
+ * @param graph Pointer to the graph structure.
+ * @return Always returns 0.
+ */
 int delete_graph(graph *graph) {
   vertex *v;
   for (int i = 0; i < graph->vertexes->size; i++) {
@@ -71,4 +121,5 @@ int delete_graph(graph *graph) {
   }
   deletelist(graph->vertexes);
   free(graph);
+  return 0;
 }
