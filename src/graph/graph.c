@@ -7,6 +7,12 @@
 #include <stdio.h>
 #include "graph.h"
 
+typedef struct {
+  int id;
+  void *value;
+  LinkedList *edges;
+} vertex;
+
 /**
  * @brief Creates a new graph.
  * 
@@ -92,6 +98,7 @@ void print_edges(graph *graph) {
  * @brief Prints the adjacent vertices of a single vertex.
  * 
  * Prints the IDs of the vertices adjacent to the given vertex.
+ * This method is intended for internal use only.
  * 
  * @param v Pointer to the vertex.
  */
@@ -102,6 +109,24 @@ void print_edge_single_vertex(vertex *v) {
     temp = (vertex *)getfromindex(v->edges, i);
     printf("id: %d | ", temp->id);
   }
+}
+
+/**
+ * @brief Get the value in the vertex with the specified ID
+ *
+ *  Return the value of the vertex with the specified ID. Remember
+ *  to cast it to the correct type. Return NULL if graph is NULL,
+ *  id is lower than 0 or id is greter than the number of vertexes
+ *  in the graph.
+ *
+ *  @param graph A pointer to a graph where the vertex is
+ *  @param id The id of the vertex
+ */
+void *get_vertex(graph *graph, int id) {
+  if (graph == NULL || id < 0 || id >= graph->vertexes->size) {
+    return NULL;
+  }
+  return ((vertex *)getfromindex(graph->vertexes, id))->value;
 }
 
 /**
