@@ -2,6 +2,7 @@
 #include "test_stack.h"
 #include "test_queue.h"
 #include "test_hash.h"
+#include "test_graph.h"
 #include <stdio.h>
 
 int main() {
@@ -10,6 +11,7 @@ int main() {
   runstacktests();
   runqueuetests();
   runhashtests();
+  rungraphtests();
   printf("All tests passed.\n");
   return 0;
 }

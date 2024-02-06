@@ -34,7 +34,8 @@ echo "Compilation finished."
 # Run the program
 echo "Running..."
 chmod u+x tests
-./tests
+
+valgrind --leak-check=yes ./tests
 echo "Program finished."
 
 # Remove the executable
