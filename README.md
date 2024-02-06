@@ -8,6 +8,7 @@ Aria's Data Structures is a C library providing efficient implementations of com
 - **Linked List**: Dynamic linear data storage.
 - **Queue**: FIFO (First-In-First-Out) data structure.
 - **Stack**: LIFO (Last-In-First-Out) data structure.
+- **Graph**: Simple graph data structure.
 
 ## Getting Started
 ### Prerequisites
@@ -79,6 +80,25 @@ char *element = popfromstack(myStack);
 deletestack(myStack);
 ```
 
+#### Graph
+```c
+#include "datastructures.h"
+
+// Creating a graph
+graph *myGraph = create_graph();
+// Adding vertices
+int vertex1_id = add_vertex(myGraph, "value1");
+int vertex2_id = add_vertex(myGraph, "value2");
+// Adding edges
+add_edge(myGraph, vertex1_id, vertex2_id);
+// Get the value from the vertex
+get_vertex(my_graph, vertex1_id) // Returns "value1"
+// Printing the adjacency list
+print_edges(myGraph);
+// Deleting the graph
+delete_graph(myGraph);
+```
+
 ## API Reference
 ### Hash Table
 - `HashTable *createhash()`: Creates a new HashTable.
@@ -103,3 +123,11 @@ deletestack(myStack);
 - `void *deletestack(struct Stack *stack)`: Deletes a Stack.
 - `void *addtostack(struct Stack *stack, void *value)`: Adds a new element to Stack.
 - `void *popfromstack(struct Stack *stack)`: Removes and returns the top element of Stack.
+
+### Graph
+- `graph *create_graph()`: Creates a new graph.
+- `int add_vertex(graph *graph, void *value)`: Adds a vertex to the graph.
+- `int add_edge(graph *graph, int id_v1, int id_v2)`: Adds an undirected edge between two vertices in the graph.
+- `void print_edges(graph *graph)`: Prints the adjacency list representation of the graph.
+- `void *get_vertex(graph *graph, int id)`: Get the value in the vertex with the specified ID.
+- `int delete_graph(graph *graph)`: Deletes the graph and frees allocated memory.
