@@ -52,8 +52,10 @@ void test_print_edges() {
 }
 
 void rungraphtests() {
+    printf("----------STARTING GRAPH TESTS----------\n");
     test_create_graph();
     test_add_vertex();
     test_add_edge();
     test_print_edges();
+    printf("----------FINISHING GRAPH TESTS----------\n");
 }

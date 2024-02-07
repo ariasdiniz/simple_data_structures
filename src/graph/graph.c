@@ -14,6 +14,23 @@ typedef struct {
 } vertex;
 
 /**
+ * @brief Prints the adjacent vertices of a single vertex.
+ * 
+ * Prints the IDs of the vertices adjacent to the given vertex.
+ * This method is intended for internal use only.
+ * 
+ * @param v Pointer to the vertex.
+ */
+static void print_edge_single_vertex(vertex *v) {
+  int size = v->edges->size;
+  vertex *temp;
+  for (int i = 0; i < size; i++) {
+    temp = (vertex *)getfromindex(v->edges, i);
+    printf("id: %d | ", temp->id);
+  }
+}
+
+/**
  * @brief Creates a new graph.
  * 
  * Allocates memory for a new graph structure and initializes it with an empty list of vertices.
@@ -91,23 +108,6 @@ void print_edges(graph *graph) {
     printf("vertex: %d | ", v->id);
     print_edge_single_vertex(v);
     printf("\n");
-  }
-}
-
-/**
- * @brief Prints the adjacent vertices of a single vertex.
- * 
- * Prints the IDs of the vertices adjacent to the given vertex.
- * This method is intended for internal use only.
- * 
- * @param v Pointer to the vertex.
- */
-void print_edge_single_vertex(vertex *v) {
-  int size = v->edges->size;
-  vertex *temp;
-  for (int i = 0; i < size; i++) {
-    temp = (vertex *)getfromindex(v->edges, i);
-    printf("id: %d | ", temp->id);
   }
 }
 
