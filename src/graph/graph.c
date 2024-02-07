@@ -23,10 +23,12 @@ typedef struct {
  */
 static void print_edge_single_vertex(vertex *v) {
   int size = v->edges->size;
-  vertex *temp;
+  int id;
+  edge *temp;
   for (int i = 0; i < size; i++) {
-    temp = (vertex *)getfromindex(v->edges, i);
-    printf("id: %d | ", temp->id);
+    temp = (edge *)getfromindex(v->edges, i);
+    id = temp->v1 == v->id ? temp->v2 : temp->v1;
+    printf("id: %d | ", id);
   }
 }
 
@@ -43,6 +45,12 @@ graph *create_graph() {
     return NULL;
   }
   g->vertexes = createlist();
+  g->edges = createlist();
+
+  if (g->vertexes == NULL || g->edges == NULL) {
+    return NULL;
+  }
+
   return g;
 }
 
@@ -77,7 +85,7 @@ int add_vertex(graph *graph, void *value) {
  * @param id_v2 ID of the second vertex.
  * @return 0 if the edge is successfully added, -1 if either vertex ID is invalid or if the edge is a self-loop.
  */
-int add_edge(graph *graph, int id_v1, int id_v2) {
+int add_edge(graph *graph, int id_v1, int id_v2, float weigth) {
   if (id_v1 == id_v2) {
     return -1; // Self-loop not allowed
   }
@@ -88,8 +96,19 @@ int add_edge(graph *graph, int id_v1, int id_v2) {
     return -1; // Invalid vertex ID
   }
 
-  addtolist(v1->edges, v2);
-  addtolist(v2->edges, v1);
+  edge *e = malloc(sizeof(edge));
+
+  if (e == NULL) {
+    return -1;
+  }
+
+  e->v1 = v1->id;
+  e->v2 = v2->id;
+  e->weigth = weigth;
+
+  addtolist(v1->edges, e);
+  addtolist(v2->edges, e);
+  addtolist(graph->edges, e);
 
   return 0;
 }
@@ -139,12 +158,17 @@ void *get_vertex(graph *graph, int id) {
  */
 int delete_graph(graph *graph) {
   vertex *v;
+  edge *e;
   for (int i = 0; i < graph->vertexes->size; i++) {
     v = (vertex *)getfromindex(graph->vertexes, i);
     deletelist(v->edges);
     free(v);
   }
+  for (int i = 0; i < graph->edges->size; i++) {
+    free(getfromindex(graph->edges, i));
+  }
   deletelist(graph->vertexes);
+  deletelist(graph->edges);
   free(graph);
   return 0;
 }
