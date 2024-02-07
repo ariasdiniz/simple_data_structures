@@ -4,12 +4,21 @@
 #include "../linkedlist/list.h"
 
 /**
+ * @brief A simple vertex for the graph data structure
+ */
+typedef struct {
+  int id;
+  void *value;
+  LinkedList *edges;
+} vertex;
+
+/**
  *@brief A simple edge for the graph data structure
  */
 typedef struct {
   float weigth;
-  int v1;
-  int v2;
+  vertex *v1;
+  vertex *v2;
 } edge;
 
 /**

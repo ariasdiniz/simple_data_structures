@@ -7,12 +7,6 @@
 #include <stdio.h>
 #include "graph.h"
 
-typedef struct {
-  int id;
-  void *value;
-  LinkedList *edges;
-} vertex;
-
 /**
  * @brief Prints the adjacent vertices of a single vertex.
  * 
@@ -27,7 +21,7 @@ static void print_edge_single_vertex(vertex *v) {
   edge *temp;
   for (int i = 0; i < size; i++) {
     temp = (edge *)getfromindex(v->edges, i);
-    id = temp->v1 == v->id ? temp->v2 : temp->v1;
+    id = temp->v1 == v ? temp->v2->id : v->id;
     printf("id: %d | ", id);
   }
 }
@@ -102,8 +96,8 @@ int add_edge(graph *graph, int id_v1, int id_v2, float weigth) {
     return -1;
   }
 
-  e->v1 = v1->id;
-  e->v2 = v2->id;
+  e->v1 = v1;
+  e->v2 = v2;
   e->weigth = weigth;
 
   addtolist(v1->edges, e);
