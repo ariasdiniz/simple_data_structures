@@ -69,7 +69,7 @@ void *addtostack(struct Stack *stack, void *value) {
 
 /*
   Removes the top element of the Stack and return a pointer to it's value.
-  Don't forget to free this pointer afterward, if it point to a manually
+  Don't forget to free this pointer afterward, if it polong long to a manually
   allocated memory address.
   @param stack A pointer to a Stack.
   @return A pointer to the value stored. return (void *)-1 if the Stack is empty.

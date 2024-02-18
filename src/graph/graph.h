@@ -7,7 +7,7 @@
  * @brief A simple vertex for the graph data structure
  */
 typedef struct {
-  int id;
+  long long id;
   void *value;
   LinkedList *edges;
 } vertex;
@@ -30,10 +30,10 @@ typedef struct {
 } graph;
 
 graph *create_graph();
-int add_vertex(graph *graph, void *value);
-int add_edge(graph *graph, int id_v1, int id_v2, float weigth);
-void *get_vertex(graph *graph, int id);
+long long add_vertex(graph *graph, void *value);
+long long add_edge(graph *graph, long long id_v1, long long id_v2, float weigth);
+void *get_vertex(graph *graph, long long id);
 void print_edges(graph *graph);
-int delete_graph(graph *graph);
+long long delete_graph(graph *graph);
 
 #endif // ARIA_DATA_STRUCTURES_GRAPH_H

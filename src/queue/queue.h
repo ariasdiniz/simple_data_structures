@@ -10,7 +10,7 @@ struct QueueItem {
 typedef struct Queue {
   struct QueueItem *first;
   struct QueueItem *last;
-  int size;
+  long long size;
 } Queue;
 
 struct Queue *createqueue();

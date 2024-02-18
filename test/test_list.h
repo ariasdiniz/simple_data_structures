@@ -22,8 +22,8 @@ void test_deletelist() {
 
   // Test deletion on a list with multiple elements
   LinkedList *list = createlist();
-  int values[] = {10, 20, 30};
-  for (int i = 0; i < 3; i++) {
+  long long values[] = {10, 20, 30};
+  for (long long i = 0; i < 3; i++) {
   addtolist(list, &values[i]);
   }
   assert(deletelist(list) == 0);
@@ -36,8 +36,8 @@ void test_deletelist() {
 
 void test_addtolist() {
   LinkedList *list = createlist();
-  int value = 10;
-  int nullValue = NULL;
+  long long value = 10;
+  long long nullValue = NULL;
 
   // Test adding to an empty list
   assert(addtolist(list, &value) == 0);
@@ -59,8 +59,8 @@ void test_addtolist() {
 
 void test_getfromindex() {
   LinkedList *list = createlist();
-  int values[] = {10, 20, 30};
-  for (int i = 0; i < 3; i++) {
+  long long values[] = {10, 20, 30};
+  for (long long i = 0; i < 3; i++) {
   addtolist(list, &values[i]);
   }
 
@@ -83,8 +83,8 @@ void test_getfromindex() {
 
 void test_removefromindex() {
   LinkedList *list = createlist();
-  int values[] = {10, 20, 30};
-  for (int i = 0; i < 3; i++) {
+  long long values[] = {10, 20, 30};
+  for (long long i = 0; i < 3; i++) {
   addtolist(list, &values[i]);
   }
 
@@ -95,7 +95,7 @@ void test_removefromindex() {
 
   // Test removing from list with one element
   LinkedList *singleItemList = createlist();
-  int singleValue = 40;
+  long long singleValue = 40;
   addtolist(singleItemList, &singleValue);
   assert(removefromindex(singleItemList, 0) == 0);
 

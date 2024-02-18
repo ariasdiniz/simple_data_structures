@@ -21,7 +21,7 @@ HashTable *createhash() {
   if (hash == NULL) {
     return (void *)-1;
   }
-  for (int i = 0; i < ARIA_DATA_STRUCTURES_HASH_MAX_SIZE; i++) {
+  for (long long i = 0; i < ARIA_DATA_STRUCTURES_HASH_MAX_SIZE; i++) {
     hash->bucket[i] = NULL;
   }
   return hash;
@@ -38,10 +38,10 @@ void *deletehash(HashTable *hash) {
   }
   LinkedList *list;
   KeyValue *kv;
-  for (int i = 0; i < ARIA_DATA_STRUCTURES_HASH_MAX_SIZE; i++) {
+  for (long long i = 0; i < ARIA_DATA_STRUCTURES_HASH_MAX_SIZE; i++) {
     list = hash->bucket[i];
     if (hash->bucket[i] != NULL) {
-      for (int j = 0; j < list->size; j++) {
+      for (long long j = 0; j < list->size; j++) {
         kv = getfromindex(list, j);
         free(kv->key);
         free(kv->value);
@@ -54,8 +54,8 @@ void *deletehash(HashTable *hash) {
   return 0;
 }
 
-unsigned int hashfunc(char *str) {
-  unsigned int hashValue = 0;
+unsigned long long hashfunc(char *str) {
+  unsigned long long hashValue = 0;
   for (; *str != '\0'; str++) {
     hashValue = 31 * hashValue + *str;
   }
@@ -74,7 +74,7 @@ void *addtohash(HashTable *hash, char *key, char *value) {
   if (hash == NULL) {
     return (void *)-1;
   }
-  unsigned int index = hashfunc(key);
+  unsigned long long index = hashfunc(key);
   LinkedList *temp = hash->bucket[index];
   KeyValue *kv = malloc(sizeof(KeyValue));
   if (kv == NULL) {
@@ -98,13 +98,13 @@ char *getfromhash(HashTable *hash, char *key) {
   if (hash == NULL) {
     return "\0";
   }
-  unsigned int index = hashfunc(key);
+  unsigned long long index = hashfunc(key);
   LinkedList *item = hash->bucket[index];
   if (item == NULL) {
     return "\0";
   }
   void *value;
-  for (int i = 0; i < item->size; i++) {
+  for (long long i = 0; i < item->size; i++) {
     value = getfromindex(item, i);
     if (strcmp(((KeyValue *)value)->key, key) == 0) {
       return ((KeyValue *)value)->value;
