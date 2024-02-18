@@ -11,7 +11,7 @@ struct StackItem {
 */
 typedef struct Stack {
   struct StackItem *top;
-  int size;
+  long long size;
 } Stack;
 
 struct Stack *createstack();

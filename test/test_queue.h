@@ -18,12 +18,12 @@ void test_createqueue() {
 
 void test_addtoqueue() {
   Queue *queue = createqueue();
-  int value = 10;
+  long long value = 10;
   addtoqueue(queue, &value);
   assert(queue->first == queue->last);
   assert(queue->size == 1);
 
-  int secondValue = 20;
+  long long secondValue = 20;
   addtoqueue(queue, &secondValue);
   assert(queue->last != queue->first);
   assert(queue->size == 2);
@@ -34,9 +34,9 @@ void test_addtoqueue() {
 
 void test_popfromqueue() {
   Queue *queue = createqueue();
-  int value = 10;
+  long long value = 10;
   addtoqueue(queue, &value);
-  int secondValue = 20;
+  long long secondValue = 20;
   addtoqueue(queue, &secondValue);
 
   void *poppedItem = popfromqueue(queue);

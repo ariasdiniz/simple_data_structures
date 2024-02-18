@@ -88,12 +88,12 @@ void *addtolist(struct LinkedList *list, void *value) {
   @param index An integer representing the index.
   @returns Returns a pointer to the value of the index. return (void *)-1 in case of error.
 */
-void *getfromindex(struct LinkedList *list, int index) {
+void *getfromindex(struct LinkedList *list, long long index) {
   if (list == NULL || index > list->size - 1 || index < 0) {
     return (void *)-1;
   }
   struct Node *node = list->head;
-  for (int i=0; i < index; i++) {
+  for (long long i=0; i < index; i++) {
     node = node->next;
   }
   return node->value;
@@ -113,7 +113,7 @@ static void resetlist(struct LinkedList *list) {
   @param index An integer representing the index to be removed.
   @return Return 0 when successful. return (void *)-1 in case of error.
 */
-void *removefromindex(struct LinkedList *list, int index) {
+void *removefromindex(struct LinkedList *list, long long index) {
   if (list == NULL || index >= list->size || index < 0) {
     return (void *)-1;
   }
@@ -126,7 +126,7 @@ void *removefromindex(struct LinkedList *list, int index) {
     resetlist(list);
     return 0;
   }
-  for (int i=0; i < index; i++) {
+  for (long long i=0; i < index; i++) {
     temp = node;
     node = node->next;
   }

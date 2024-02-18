@@ -37,7 +37,7 @@ void *deletequeue(struct Queue *queue) {
   }
   struct QueueItem *next;
   struct QueueItem *actual = queue->last;
-  for (int i=0; i < queue->size; i++) {
+  for (long long i=0; i < queue->size; i++) {
     next = actual->next;
     free(actual);
     actual = next;
@@ -79,7 +79,7 @@ void *addtoqueue(struct Queue *queue, void *value) {
 
 /*
   Removes the first element of the queue and return a pointer to it's value.
-  Don't forget to free this pointer afterward, if it point to a manually
+  Don't forget to free this pointer afterward, if it polong long to a manually
   allocated memory address.
   @param queue A pointer to a queue.
   @return A pointer to the value stored. return (void *)-1 if the queue is empty.

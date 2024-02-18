@@ -17,7 +17,7 @@ void test_deletestack() {
   deletestack(stack);  // Should be able to delete an empty stack
 
   stack = createstack();
-  int i = 1;
+  long long i = 1;
   addtostack(stack, i);  // Add an item
   deletestack(stack);  // Should be able to delete a non-empty stack
   printf("test_deletestack passed\n");
@@ -25,7 +25,7 @@ void test_deletestack() {
 
 void test_addtostack() {
   Stack *stack = createstack();
-  int value = 10;
+  long long value = 10;
   addtostack(stack, &value);
   assert(stack->size == 1);  // Size should be 1 after adding
   assert(stack->top->value == &value);  // Top item should be the one added
@@ -35,9 +35,9 @@ void test_addtostack() {
 
 void test_popfromstack() {
   Stack *stack = createstack();
-  int value = 10;
+  long long value = 10;
   addtostack(stack, &value);
-  int *poppedValue = popfromstack(stack);
+  long long *poppedValue = popfromstack(stack);
   assert(poppedValue == &value);  // Popped value should match the added value
   assert(stack->size == 0);  // Stack should be empty after popping
   assert(stack->top == NULL);  // Top should be NULL after popping

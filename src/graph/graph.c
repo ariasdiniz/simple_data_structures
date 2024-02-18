@@ -8,7 +8,7 @@
 #include "graph.h"
 
 typedef struct {
-  int id;
+  long long id;
   void *value;
   LinkedList *edges;
 } vertex;
@@ -22,11 +22,11 @@ typedef struct {
  * @param v Pointer to the vertex.
  */
 static void print_edge_single_vertex(vertex *v) {
-  int size = v->edges->size;
+  long long size = v->edges->size;
   vertex *temp;
-  for (int i = 0; i < size; i++) {
+  for (long long i = 0; i < size; i++) {
     temp = (vertex *)getfromindex(v->edges, i);
-    printf("id: %d | ", temp->id);
+    printf("id: %lld | ", temp->id);
   }
 }
 
@@ -55,7 +55,7 @@ graph *create_graph() {
  * @param value Pointer to the value to be stored in the new vertex.
  * @return The ID of the newly added vertex, or -1 if memory allocation fails.
  */
-int add_vertex(graph *graph, void *value) {
+long long add_vertex(graph *graph, void *value) {
   vertex *v = malloc(sizeof(vertex));
   if (v == NULL) {
     return -1;
@@ -77,14 +77,14 @@ int add_vertex(graph *graph, void *value) {
  * @param id_v2 ID of the second vertex.
  * @return 0 if the edge is successfully added, -1 if either vertex ID is invalid or if the edge is a self-loop.
  */
-int add_edge(graph *graph, int id_v1, int id_v2) {
+long long add_edge(graph *graph, long long id_v1, long long id_v2) {
   if (id_v1 == id_v2) {
     return -1; // Self-loop not allowed
   }
   vertex *v1 = (vertex *)getfromindex(graph->vertexes, id_v1);
   vertex *v2 = (vertex *)getfromindex(graph->vertexes, id_v2);
 
-  if (*(int *)v1 == -1 || *(int *)v2 == -1) {
+  if (*(long long *)v1 == -1 || *(long long *)v2 == -1) {
     return -1; // Invalid vertex ID
   }
 
@@ -103,9 +103,9 @@ int add_edge(graph *graph, int id_v1, int id_v2) {
  */
 void print_edges(graph *graph) {
   vertex *v;
-  for (int i = 0; i < graph->vertexes->size; i++) {
+  for (long long i = 0; i < graph->vertexes->size; i++) {
     v = (vertex *)getfromindex(graph->vertexes, i);
-    printf("vertex: %d | ", v->id);
+    printf("vertex: %lld | ", v->id);
     print_edge_single_vertex(v);
     printf("\n");
   }
@@ -122,7 +122,7 @@ void print_edges(graph *graph) {
  *  @param graph A pointer to a graph where the vertex is
  *  @param id The id of the vertex
  */
-void *get_vertex(graph *graph, int id) {
+void *get_vertex(graph *graph, long long id) {
   if (graph == NULL || id < 0 || id >= graph->vertexes->size) {
     return NULL;
   }
@@ -137,9 +137,9 @@ void *get_vertex(graph *graph, int id) {
  * @param graph Pointer to the graph structure.
  * @return Always returns 0.
  */
-int delete_graph(graph *graph) {
+long long delete_graph(graph *graph) {
   vertex *v;
-  for (int i = 0; i < graph->vertexes->size; i++) {
+  for (long long i = 0; i < graph->vertexes->size; i++) {
     v = (vertex *)getfromindex(graph->vertexes, i);
     deletelist(v->edges);
     free(v);
