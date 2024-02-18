@@ -25,11 +25,11 @@ void test_add_edge() {
     graph *g = create_graph();
     add_vertex(g, (void *)1);
     add_vertex(g, (void *)2);
-    assert(add_edge(g, 0, 1) == 0);
+    assert(add_edge(g, 0, 1, 1) == 0);
     // test if add edge to two identical ids returns -1
-    assert(add_edge(g, 1, 1) == -1);
-    long long v1 = (int)get_vertex(g, 0);
-    long long v2 = (int)get_vertex(g, 1);
+    assert(add_edge(g, 1, 1, 1) == -1);
+    long long v1 = (long long)get_vertex(g, 0);
+    long long v2 = (long long)get_vertex(g, 1);
     void *v3 = get_vertex(g, 10);
     void *v4 = get_vertex(g, -10);
     assert(v1 == 1);
@@ -44,7 +44,7 @@ void test_print_edges() {
     graph *g = create_graph();
     add_vertex(g, (void *)1);
     add_vertex(g, (void *)2);
-    add_edge(g, 0, 1);
+    add_edge(g, 0, 1, 1);
     printf("Printing edges:\n");
     print_edges(g);
     printf("test_print_edges passed.\n");

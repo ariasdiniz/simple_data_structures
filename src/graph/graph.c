@@ -7,12 +7,6 @@
 #include <stdio.h>
 #include "graph.h"
 
-typedef struct {
-  long long id;
-  void *value;
-  LinkedList *edges;
-} vertex;
-
 /**
  * @brief Prints the adjacent vertices of a single vertex.
  * 
@@ -23,10 +17,12 @@ typedef struct {
  */
 static void print_edge_single_vertex(vertex *v) {
   long long size = v->edges->size;
-  vertex *temp;
+  long long id;
+  edge *temp;
   for (long long i = 0; i < size; i++) {
-    temp = (vertex *)getfromindex(v->edges, i);
-    printf("id: %lld | ", temp->id);
+    temp = (edge *)getfromindex(v->edges, i);
+    id = temp->v1 == v ? temp->v2->id : v->id;
+    printf("id: %lld | ", id);
   }
 }
 
@@ -43,6 +39,12 @@ graph *create_graph() {
     return NULL;
   }
   g->vertexes = createlist();
+  g->edges = createlist();
+
+  if (g->vertexes == NULL || g->edges == NULL) {
+    return NULL;
+  }
+
   return g;
 }
 
@@ -77,7 +79,7 @@ long long add_vertex(graph *graph, void *value) {
  * @param id_v2 ID of the second vertex.
  * @return 0 if the edge is successfully added, -1 if either vertex ID is invalid or if the edge is a self-loop.
  */
-long long add_edge(graph *graph, long long id_v1, long long id_v2) {
+long long add_edge(graph *graph, long long id_v1, long long id_v2, float weigth) {
   if (id_v1 == id_v2) {
     return -1; // Self-loop not allowed
   }
@@ -88,8 +90,19 @@ long long add_edge(graph *graph, long long id_v1, long long id_v2) {
     return -1; // Invalid vertex ID
   }
 
-  addtolist(v1->edges, v2);
-  addtolist(v2->edges, v1);
+  edge *e = malloc(sizeof(edge));
+
+  if (e == NULL) {
+    return -1;
+  }
+
+  e->v1 = v1;
+  e->v2 = v2;
+  e->weigth = weigth;
+
+  addtolist(v1->edges, e);
+  addtolist(v2->edges, e);
+  addtolist(graph->edges, e);
 
   return 0;
 }
@@ -139,12 +152,17 @@ void *get_vertex(graph *graph, long long id) {
  */
 long long delete_graph(graph *graph) {
   vertex *v;
+  edge *e;
   for (long long i = 0; i < graph->vertexes->size; i++) {
     v = (vertex *)getfromindex(graph->vertexes, i);
     deletelist(v->edges);
     free(v);
   }
+  for (long long i = 0; i < graph->edges->size; i++) {
+    free(getfromindex(graph->edges, i));
+  }
   deletelist(graph->vertexes);
+  deletelist(graph->edges);
   free(graph);
   return 0;
 }
