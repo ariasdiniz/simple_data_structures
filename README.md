@@ -19,6 +19,12 @@ Aria's Data Structures is a C library providing efficient implementations of com
 1. Clone or download this repository.
 2. Include `datastructures.h` in your C project.
 
+OR
+
+1. Clone or download this repository.
+2. Run the `install` script.
+3. Include and link the library in your C project.
+
 ### Usage Examples
 #### Hash Table
 ```c

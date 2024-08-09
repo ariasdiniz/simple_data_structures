@@ -1,5 +1,4 @@
-#include "hash.h"
-#include "../linkedlist/list.h"
+#include "../../datastructures.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -9,13 +8,6 @@ typedef struct KeyValue {
   char *value;
 } KeyValue;
 
-/*
-  Create a new HashTable and return a pointer to it.
-  Don't forget to free it's memory calling deletehash on it
-  after usage.
-  @return Return a pointer to the newly created HashTable.
-  return (void *)-1 if memory allocation failed.
-*/
 HashTable *createhash() {
   HashTable *hash = malloc(sizeof(HashTable));
   if (hash == NULL) {
@@ -27,11 +19,6 @@ HashTable *createhash() {
   return hash;
 }
 
-/*
-  Safely deletes the HashTable, freeing the memory of all of it's elements.
-  @param hash A pointer to a HashTable.
-  @return Return 0 if successful. return (void *)-1 if hash is NULL.
-*/
 void *deletehash(HashTable *hash) {
   if (hash == NULL) {
     return (void *)-1;
@@ -62,14 +49,6 @@ unsigned long long hashfunc(char *str) {
   return hashValue % ARIA_DATA_STRUCTURES_HASH_MAX_SIZE;
 }
 
-/*
-  Add a new key-value pair to the HashTable.
-  @param hash A pointer to the HashTable.
-  @param key A char pointer to the key.
-  @param value A char pointer to the value.
-  @return Return 0 if successful. return (void *)-1 if hash is NULL or
-  in case of failure of memory allocation.
-*/
 void *addtohash(HashTable *hash, char *key, char *value) {
   if (hash == NULL) {
     return (void *)-1;
@@ -87,13 +66,6 @@ void *addtohash(HashTable *hash, char *key, char *value) {
   return 0;
 }
 
-/*
-  Gets a value from a hash using the provided key.
-  @param hash A pointer to the HashTable.
-  @param key A char pointer representing the key.
-  @return Return a char pointer to the value. return "\0" if hash is NULL
-  or if the provided key does not have a value.
-*/
 char *getfromhash(HashTable *hash, char *key) {
   if (hash == NULL) {
     return "\0";

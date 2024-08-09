@@ -1,7 +1,7 @@
 #ifndef ARIA_DATA_STRUCTURES_TEST_LIST
 #define ARIA_DATA_STRUCTURES_TEST_LIST
 
-#include "../src/linkedlist/list.h"
+#include "../datastructures.h"
 #include <assert.h>
 #include <stdio.h>
 

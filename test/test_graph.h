@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "../src/graph/graph.h"
+#include "../datastructures.h"
 
 void test_create_graph() {
     graph *g = create_graph();

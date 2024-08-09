@@ -1,7 +1,7 @@
 #ifndef ARIA_DATA_STRUCTURES_TEST_QUEUE_H
 #define ARIA_DATA_STRUCTURES_TEST_QUEUE_H
 
-#include "../src/queue/queue.h"
+#include "../datastructures.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>

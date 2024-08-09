@@ -1,4 +1,4 @@
-#include "../src/stack/stack.h"
+#include "../datastructures.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
