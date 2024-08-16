@@ -2,33 +2,34 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 void test_createstack() {
   Stack *stack = createstack();
-  assert(stack != NULL);  // Check if stack is created
-  assert(stack->size == 0);  // Initial size should be 0
-  assert(stack->top == NULL);  // Top should be NULL initially
+  assert(stack != NULL);
+  assert(stack->size == 0);
+  assert(stack->top == NULL);
   deletestack(stack);
   printf("test_createstack passed\n");
 }
 
 void test_deletestack() {
   Stack *stack = createstack();
-  deletestack(stack);  // Should be able to delete an empty stack
+  deletestack(stack);
 
   stack = createstack();
-  long long i = 1;
-  addtostack(stack, i);  // Add an item
-  deletestack(stack);  // Should be able to delete a non-empty stack
+  int i = 1;
+  addtostack(stack, (void *)(intptr_t)i);
+  deletestack(stack);
   printf("test_deletestack passed\n");
 }
 
 void test_addtostack() {
   Stack *stack = createstack();
-  long long value = 10;
-  addtostack(stack, &value);
-  assert(stack->size == 1);  // Size should be 1 after adding
-  assert(stack->top->value == &value);  // Top item should be the one added
+  int value = 10;
+  addtostack(stack, (void *)(intptr_t)value);
+  assert(stack->size == 1);
+  assert((int)(intptr_t)stack->top->value == value);
   deletestack(stack);
   printf("test_addtostack passed\n");
 }
@@ -38,9 +39,10 @@ void test_popfromstack() {
   long long value = 10;
   addtostack(stack, &value);
   long long *poppedValue = popfromstack(stack);
-  assert(poppedValue == &value);  // Popped value should match the added value
-  assert(stack->size == 0);  // Stack should be empty after popping
-  assert(stack->top == NULL);  // Top should be NULL after popping
+  assert(poppedValue == &value);
+  assert(stack->size == 0);
+  assert(stack->top == NULL);
+  assert(popfromstack(stack) == NULL);
   deletestack(stack);
   printf("test_popfromstack passed\n");
 }

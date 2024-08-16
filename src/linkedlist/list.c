@@ -35,12 +35,12 @@ int deletelist(struct LinkedList *list) {
 
 int addtolist(struct LinkedList *list, void *value) {
   if (list == NULL) {
-    return (void *)-1;
+    return -1;
   }
   if (list->size == 0) {
     struct Node *node = malloc(sizeof(struct Node));
     if (node == NULL) {
-      return (void *)-1;
+      return -1;
     }
     node->value = value;
     node->next = NULL;
@@ -51,7 +51,7 @@ int addtolist(struct LinkedList *list, void *value) {
   }
   struct Node *node = malloc(sizeof(struct Node));
   if (node == NULL) {
-    return (void *)-1;
+    return -1;
   }
   node->value = value;
   node->next = NULL;

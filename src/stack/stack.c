@@ -11,9 +11,9 @@ struct Stack *createstack() {
   return stack;
 }
 
-void *deletestack(struct Stack *stack) {
+int deletestack(struct Stack *stack) {
   if (stack == NULL) {
-    return (void *)-1;
+    return -1;
   }
   if (stack->size == 0 && stack->top == NULL) {
     free(stack);
@@ -30,13 +30,13 @@ void *deletestack(struct Stack *stack) {
   return 0;
 }
 
-void *addtostack(struct Stack *stack, void *value) {
+int addtostack(struct Stack *stack, void *value) {
   if (stack == NULL) {
-    return (void *)-1;
+    return -1;
   }
   struct StackItem *item = malloc(sizeof(struct StackItem));
   if (item == NULL) {
-    return (void *)-1;
+    return -1;
   }
   item->next = stack->top;
   item->value = value;
@@ -47,7 +47,7 @@ void *addtostack(struct Stack *stack, void *value) {
 
 void *popfromstack(struct Stack *stack) {
   if (stack == NULL || stack->size == 0) {
-    return (void *)-1;
+    return NULL;
   }
   struct StackItem *item = stack->top;
   void *value = item->value;

@@ -195,25 +195,25 @@ struct Stack *createstack();
   other manually allocated memory adresses, please free all pointers
   before calling this method.
   @param stack A pointer to a Stack.
-  @return Return 0 when successful. return (void *)-1 if Stack is empty or NULL.
+  @return Return 0 when successful. return -1 if Stack is empty or NULL.
 */
-void *deletestack(struct Stack *stack);
+int deletestack(struct Stack *stack);
 
 /*
   Add a new element to the Stack.
   @param stack A pointer to a Stack.
   @param value A pointer to a value to be stored.
-  @return Return 0 if successful. return (void *)-1 if Stack is NULL or empty,
+  @return Return 0 if successful. return -1 if Stack is NULL or empty,
   or in case of error in memory allocation.
 */
-void *addtostack(struct Stack *stack, void *value);
+int addtostack(struct Stack *stack, void *value);
 
 /*
   Removes the top element of the Stack and return a pointer to it's value.
   Don't forget to free this pointer afterward, if it polong long to a manually
   allocated memory address.
   @param stack A pointer to a Stack.
-  @return A pointer to the value stored. return (void *)-1 if the Stack is empty.
+  @return A pointer to the value stored. return NULL if the Stack is empty.
 */
 void *popfromstack(struct Stack *stack);
 
@@ -276,7 +276,7 @@ long long add_vertex(graph *graph, void *value);
  * @param id_v2 ID of the second vertex.
  * @return 0 if the edge is successfully added, -1 if either vertex ID is invalid or if the edge is a self-loop.
  */
-long long add_edge(graph *graph, long long id_v1, long long id_v2, float weigth);
+int add_edge(graph *graph, long long id_v1, long long id_v2, float weigth);
 
 /**
  * @brief Get the value in the vertex with the specified ID
@@ -308,6 +308,6 @@ void print_edges(graph *graph);
  * @param graph Pointer to the graph structure.
  * @return Always returns 0.
  */
-long long delete_graph(graph *graph);
+int delete_graph(graph *graph);
 
 #endif // ARIA_DATA_STRUCTURES_H
