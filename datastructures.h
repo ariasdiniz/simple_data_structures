@@ -27,9 +27,9 @@ struct LinkedList *createlist();
   Free the memory allocated by createlist().
 
   @param list A pointer to a LinkedList.
-  @return void* Returns NULL when successful. -1 when the list param is NULL.
+  @return void* Returns 0 when successful. -1 when the list param is NULL.
 */
-void *deletelist(struct LinkedList *list);
+int deletelist(struct LinkedList *list);
 
 /*
   Add a new element at the bottom of the list.
@@ -38,14 +38,14 @@ void *deletelist(struct LinkedList *list);
   @param value A void pointer to the value to be added to the list.
   @return Returns 0 if successful. Returns -1 when an error occur.
 */
-void *addtolist(struct LinkedList *list, void *value);
+int addtolist(struct LinkedList *list, void *value);
 
 /*
   Gets the value of an specific index in the provided list.
 
   @param list A pointer to a LinkedList.
   @param index An integer representing the index.
-  @returns Returns a pointer to the value of the index. return (void *)-1 in case of error.
+  @returns Returns a pointer to the value of the index. return NULL in case of error.
 */
 void *getfromindex(struct LinkedList *list, long long index);
 
@@ -54,9 +54,9 @@ void *getfromindex(struct LinkedList *list, long long index);
 
   @param list A pointer to a LinkedList.
   @param index An integer representing the index to be removed.
-  @return Return 0 when successful. return (void *)-1 in case of error.
+  @return Return 0 when successful. return -1 in case of error.
 */
-void *removefromindex(struct LinkedList *list, long long index);
+int removefromindex(struct LinkedList *list, long long index);
 
 // ------------------------------------------------
 // HashTable
@@ -72,35 +72,44 @@ typedef struct HashTable {
   Don't forget to free it's memory calling deletehash on it
   after usage.
   @return Return a pointer to the newly created HashTable.
-  return (void *)-1 if memory allocation failed.
+  return NULL if memory allocation failed.
 */
 HashTable *createhash();
 
 /*
   Safely deletes the HashTable, freeing the memory of all of it's elements.
   @param hash A pointer to a HashTable.
-  @return Return 0 if successful. return (void *)-1 if hash is NULL.
+  @return Return 0 if successful. return -1 if hash is NULL.
 */
-void *deletehash(HashTable *hash);
+int deletehash(HashTable *hash);
 
 /*
   Gets a value from a hash using the provided key.
   @param hash A pointer to the HashTable.
   @param key A char pointer representing the key.
-  @return Return a char pointer to the value. return "\0" if hash is NULL
+  @return Return a pointer to the value. return NULL if hash is NULL
   or if the provided key does not have a value.
 */
-char *getfromhash(HashTable *hash, char *key);
+void *getfromhash(HashTable *hash, char *key);
 
 /*
   Add a new key-value pair to the HashTable.
   @param hash A pointer to the HashTable.
   @param key A char pointer to the key.
-  @param value A char pointer to the value.
-  @return Return 0 if successful. return (void *)-1 if hash is NULL or
+  @param value A pointer to the value.
+  @return Return 0 if successful. return -1 if hash is NULL or
   in case of failure of memory allocation.
 */
-void * addtohash(HashTable *hash, char *key, char *value);
+int addtohash(HashTable *hash, char *key, void *value);
+
+/*
+  Update the value of an existing key in the HashTable.
+  @param hash A pointer to a HashTable.
+  @param key A char pointer to an existing key.
+  @param new_value A pointer to the new value.
+  @return Return 0 if successfull, -1 the hash is NULL or the key don't exist.
+*/
+int updatehashitem(HashTable *hash, char *key, void *new_value);
 
 // ------------------------------------------------
 // Queue
@@ -132,25 +141,25 @@ struct Queue *createqueue();
   other manually allocated memory adresses, please free all pointers
   before calling this method.
   @param queue A pointer to a Queue.
-  @return Return 0 when successful. return (void *)-1 if queue is empty or NULL.
+  @return Return 0 when successful. return -1 if queue is empty or NULL.
 */
-void *deletequeue(struct Queue *queue);
+int deletequeue(struct Queue *queue);
 
 /*
   Add a new element to the queue.
   @param queue A pointer to a Queue.
   @param value A pointer to a value to be stored.
-  @return Return 0 if successful. return (void *)-1 if queue is NULL or empty,
+  @return Return 0 if successful. return -1 if queue is NULL or empty,
   or in case of error in memory allocation.
 */
-void *addtoqueue(struct Queue *queue, void *value);
+int addtoqueue(struct Queue *queue, void *value);
 
 /*
   Removes the first element of the queue and return a pointer to it's value.
   Don't forget to free this pointer afterward, if it polong long to a manually
   allocated memory address.
   @param queue A pointer to a queue.
-  @return A pointer to the value stored. return (void *)-1 if the queue is empty.
+  @return A pointer to the value stored. return NULL if the queue is empty.
 */
 void *popfromqueue(struct Queue *queue);
 

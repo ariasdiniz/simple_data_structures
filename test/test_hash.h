@@ -38,13 +38,26 @@ void test_addtohash() {
 void test_getfromhash() {
   HashTable *hash = setup();
   addtohash(hash, "key1", "value1");
-  char *value = getfromhash(hash, "key1");
-  assert(value != -1 && strcmp(value, "value1") == 0);
+  char *value = (char *)getfromhash(hash, "key1");
+  assert(value != NULL && strcmp(value, "value1") == 0);
   value = getfromhash(hash, "nonexistent");
-  assert(strcmp(value, "\0") == 0);
-  assert(strcmp(getfromhash(NULL, "key1"), "\0") == 0);
+  assert(value == NULL);
+  assert(getfromhash(NULL, "key1") == NULL);
   teardown(hash);
   printf("test_getfromhash passed\n");
+}
+
+void test_updatehashitem() {
+  HashTable *hash = setup();
+  addtohash(hash, "key1", "value1");
+  char *value = (char *)getfromhash(hash, "key1");
+  assert(value != NULL && strcmp(value, "value1") == 0);
+  assert(updatehashitem(hash, "key1", "value2") == 0);
+  value = (char *)getfromhash(hash, "key1");
+  assert(value != NULL && strcmp(value, "value2") == 0);
+  assert(updatehashitem(hash, "inexistent key", 0) == -1);
+  teardown(hash);
+  printf("test_updatehashitem passed\n");
 }
 
 void runhashtests() {
@@ -53,5 +66,6 @@ void runhashtests() {
   test_deletehash();
   test_addtohash();
   test_getfromhash();
+  test_updatehashitem();
   printf("----------FINISHING HASHTABLE TESTS----------\n");
 }

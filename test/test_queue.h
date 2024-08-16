@@ -44,6 +44,9 @@ void test_popfromqueue() {
   assert(queue->size == 1);
   assert(queue->first != NULL);
 
+  assert(popfromqueue(queue) == &secondValue);
+  assert(popfromqueue(queue) == NULL);
+
   deletequeue(queue);
   printf("test_popfromqueue passed\n");
 }

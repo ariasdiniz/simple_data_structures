@@ -12,9 +12,9 @@ struct Queue *createqueue() {
   return queue;
 }
 
-void *deletequeue(struct Queue *queue) {
+int deletequeue(struct Queue *queue) {
   if (queue == NULL) {
-    return (void *)-1;
+    return -1;
   }
   if (queue->size == 0) {
     free(queue);
@@ -31,13 +31,13 @@ void *deletequeue(struct Queue *queue) {
   return 0;
 }
 
-void *addtoqueue(struct Queue *queue, void *value) {
+int addtoqueue(struct Queue *queue, void *value) {
   if (queue == NULL) {
-    return (void *)-1;
+    return -1;
   }
   struct QueueItem *item = malloc(sizeof(struct QueueItem));
   if (item == NULL) {
-    return (void *)-1;
+    return -1;
   }
   item->value = value;
   item->prev = NULL;
@@ -56,7 +56,7 @@ void *addtoqueue(struct Queue *queue, void *value) {
 }
 
 void *popfromqueue(struct Queue *queue) {
-  if (queue == NULL) {
+  if (queue == NULL || queue->size == 0) {
     return NULL;
   }
   struct QueueItem *item = queue->first;

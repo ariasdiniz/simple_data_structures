@@ -13,9 +13,9 @@ struct LinkedList *createlist() {
   return list;
 }
 
-void *deletelist(struct LinkedList *list) {
+int deletelist(struct LinkedList *list) {
   if (list == NULL) {
-    return (void *)-1;
+    return -1;
   }
   if (list->size == 0) {
     free(list);
@@ -33,7 +33,7 @@ void *deletelist(struct LinkedList *list) {
   return 0;
 }
 
-void *addtolist(struct LinkedList *list, void *value) {
+int addtolist(struct LinkedList *list, void *value) {
   if (list == NULL) {
     return (void *)-1;
   }
@@ -63,7 +63,7 @@ void *addtolist(struct LinkedList *list, void *value) {
 
 void *getfromindex(struct LinkedList *list, long long index) {
   if (list == NULL || index > list->size - 1 || index < 0) {
-    return (void *)-1;
+    return NULL;
   }
   struct Node *node = list->head;
   for (long long i=0; i < index; i++) {
@@ -79,9 +79,9 @@ static void resetlist(struct LinkedList *list) {
   }
 }
 
-void *removefromindex(struct LinkedList *list, long long index) {
+int removefromindex(struct LinkedList *list, long long index) {
   if (list == NULL || index >= list->size || index < 0) {
-    return (void *)-1;
+    return -1;
   }
   struct Node *node = list->head;
   struct Node *temp;

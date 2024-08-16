@@ -29,7 +29,7 @@ void test_deletelist() {
   assert(deletelist(list) == 0);
 
   // Test with NULL
-  assert((int)deletelist(NULL) == -1);
+  assert(deletelist(NULL) == -1);
 
   printf("test_deletelist passed\n");
 }
@@ -37,7 +37,7 @@ void test_deletelist() {
 void test_addtolist() {
   LinkedList *list = createlist();
   long long value = 10;
-  long long nullValue = NULL;
+  long long nullValue;
 
   // Test adding to an empty list
   assert(addtolist(list, &value) == 0);
@@ -51,7 +51,7 @@ void test_addtolist() {
   assert(addtolist(list, &nullValue) == 0);
 
   // Test with NULL list pointer
-  assert((int)addtolist(NULL, &value) == -1);
+  assert(addtolist(NULL, &value) == -1);
 
   deletelist(list);
   printf("test_addtolist passed\n");
@@ -69,13 +69,13 @@ void test_getfromindex() {
   assert(getfromindex(list, 2) == &values[2]);
 
   // Test with index greater than size
-  assert((int)getfromindex(list, 3) == -1);
+  assert(getfromindex(list, 3) == NULL);
 
   // Test with negative index
-  assert((int)getfromindex(list, -1) == -1);
+  assert(getfromindex(list, -1) == NULL);
 
   // Test with NULL list pointer
-  assert((int)getfromindex(NULL, 0) == -1);
+  assert(getfromindex(NULL, 0) == NULL);
 
   deletelist(list);
   printf("test_getfromindex passed\n");
@@ -100,13 +100,13 @@ void test_removefromindex() {
   assert(removefromindex(singleItemList, 0) == 0);
 
   // Test with index greater than size
-  assert((int)removefromindex(list, 3) == -1);
+  assert(removefromindex(list, 3) == -1);
 
   // Test with negative index
-  assert((int)removefromindex(list, -1) == -1);
+  assert(removefromindex(list, -1) == -1);
 
   // Test with NULL list pointer
-  assert((int)removefromindex(NULL, 0) == -1);
+  assert(removefromindex(NULL, 0) == -1);
 
   deletelist(list);
   deletelist(singleItemList);
