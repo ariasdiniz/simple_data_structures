@@ -13,7 +13,6 @@ Aria's Data Structures is a C library providing efficient implementations of com
 ## Getting Started
 ### Prerequisites
 - A C compiler (e.g., GCC, Clang).
-- Basic understanding of C programming.
 
 ### Installation
 1. Clone or download this repository.
@@ -108,26 +107,27 @@ delete_graph(myGraph);
 ## API Reference
 ### Hash Table
 - `HashTable *createhash()`: Creates a new HashTable.
-- `void *deletehash(HashTable *hash)`: Deletes a HashTable.
-- `void *addtohash(HashTable *hash, char *key, char *value)`: Adds a key-value pair to HashTable.
+- `int deletehash(HashTable *hash)`: Deletes a HashTable.
+- `int addtohash(HashTable *hash, char *key, void *value)`: Adds a key-value pair to HashTable.
+- `int updatehashitem(HashTable *hash, char *key, voud *new_value)`: Update a value of a key in the HashTable
 - `char *getfromhash(HashTable *hash, char *key)`: Retrieves value for a given key from HashTable.
 
 ### Linked List
 - `struct LinkedList *createlist()`: Creates a new LinkedList.
-- `void *deletelist(struct LinkedList *list)`: Deletes a LinkedList.
-- `void *addtolist(struct LinkedList *list, void *value)`: Adds a new element to LinkedList.
+- `int deletelist(struct LinkedList *list)`: Deletes a LinkedList.
+- `int addtolist(struct LinkedList *list, void *value)`: Adds a new element to LinkedList.
 - `void *getfromindex(struct LinkedList *list, int index)`: Gets a value from LinkedList by index.
 
 ### Queue
 - `struct Queue *createqueue()`: Creates a new Queue.
-- `void *deletequeue(struct Queue *queue)`: Deletes a Queue.
-- `void *addtoqueue(struct Queue *queue, void *value)`: Adds a new element to Queue.
+- `int deletequeue(struct Queue *queue)`: Deletes a Queue.
+- `int addtoqueue(struct Queue *queue, void *value)`: Adds a new element to Queue.
 - `void *popfromqueue(struct Queue *queue)`: Removes and returns the first element of Queue.
 
 ### Stack
 - `struct Stack *createstack()`: Creates a new Stack.
-- `void *deletestack(struct Stack *stack)`: Deletes a Stack.
-- `void *addtostack(struct Stack *stack, void *value)`: Adds a new element to Stack.
+- `int deletestack(struct Stack *stack)`: Deletes a Stack.
+- `int addtostack(struct Stack *stack, void *value)`: Adds a new element to Stack.
 - `void *popfromstack(struct Stack *stack)`: Removes and returns the top element of Stack.
 
 ### Graph
