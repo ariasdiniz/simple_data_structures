@@ -48,15 +48,15 @@ long long add_vertex(graph *graph, void *value) {
   return v->id;
 }
 
-long long add_edge(graph *graph, long long id_v1, long long id_v2, float weigth) {
+int add_edge(graph *graph, long long id_v1, long long id_v2, float weigth) {
   if (id_v1 == id_v2) {
-    return -1; // Self-loop not allowed
+    return -1;
   }
   vertex *v1 = (vertex *)getfromindex(graph->vertexes, id_v1);
   vertex *v2 = (vertex *)getfromindex(graph->vertexes, id_v2);
 
   if (*(long long *)v1 == -1 || *(long long *)v2 == -1) {
-    return -1; // Invalid vertex ID
+    return -1;
   }
 
   edge *e = malloc(sizeof(edge));
@@ -93,15 +93,15 @@ void *get_vertex(graph *graph, long long id) {
   return ((vertex *)getfromindex(graph->vertexes, id))->value;
 }
 
-long long delete_graph(graph *graph) {
+int delete_graph(graph *graph) {
   vertex *v;
   edge *e;
-  for (long long i = 0; i < graph->vertexes->size; i++) {
+  for (unsigned long i = 0; i < graph->vertexes->size; i++) {
     v = (vertex *)getfromindex(graph->vertexes, i);
     deletelist(v->edges);
     free(v);
   }
-  for (long long i = 0; i < graph->edges->size; i++) {
+  for (unsigned long i = 0; i < graph->edges->size; i++) {
     free(getfromindex(graph->edges, i));
   }
   deletelist(graph->vertexes);

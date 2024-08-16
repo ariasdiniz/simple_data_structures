@@ -14,9 +14,9 @@ void test_create_graph() {
 
 void test_add_vertex() {
     graph *g = create_graph();
-    long long id = add_vertex(g, (void *)1);
+    long long id = add_vertex(g, 1);
     assert(id == 0);
-    assert(get_vertex(g, id) == 1);
+    assert(*(int *)get_vertex(g, id) == 1);
     printf("test_add_vertex passed.\n");
     delete_graph(g);
 }
