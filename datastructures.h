@@ -310,4 +310,18 @@ void print_edges(graph *graph);
  */
 int delete_graph(graph *graph);
 
+// ---------------------------------------------------
+// Binary Tree
+
+typedef struct {
+  void* value;
+  struct TreeNode* left;
+  struct TreeNode* right;
+} TreeNode;
+
+typedef struct {
+  TreeNode* head;
+  long depth;
+} BinaryTree;
+
 #endif // ARIA_DATA_STRUCTURES_H
