@@ -313,15 +313,25 @@ int delete_graph(graph *graph);
 // ---------------------------------------------------
 // Binary Tree
 
-typedef struct {
+struct TreeNode {
   void* value;
+  long long node_val;
   struct TreeNode* left;
   struct TreeNode* right;
-} TreeNode;
+};
+
+typedef struct TreeNode TreeNode;
 
 typedef struct {
-  TreeNode* head;
-  long depth;
+  struct TreeNode* head;
+  long long depth;
 } BinaryTree;
+
+typedef long long treeEval(void*);
+
+BinaryTree* create_tree();
+void destroy_tree(BinaryTree* tree);
+long long add_tree_node(BinaryTree* tree, void* value, treeEval func);
+void* get_tree_node(BinaryTree* tree, long long value);
 
 #endif // ARIA_DATA_STRUCTURES_H
