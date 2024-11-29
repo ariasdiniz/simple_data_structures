@@ -324,7 +324,7 @@ typedef struct TreeNode TreeNode;
 
 typedef struct {
   struct TreeNode* head;
-  long long depth;
+  long long n_nodes;
 } BinaryTree;
 
 typedef long long treeEval(void*);
