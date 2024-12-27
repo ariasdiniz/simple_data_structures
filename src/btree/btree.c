@@ -78,7 +78,7 @@ long long add_tree_node(BinaryTree* tree, void* value, treeEval func) {
 void* get_tree_node(BinaryTree* tree, long long value) {
   if (tree == NULL || tree->head == NULL) return NULL;
   TreeNode* node = tree->head;
-  for (long long depth = 0; depth < tree->n_nodes; depth++) {
+  for (long long depth = 0; depth < tree->n_nodes && node != NULL; depth++) {
     if (node->node_val == value) return node->value;
     if (node->node_val > value) {
       node = node->left;
