@@ -28,7 +28,7 @@ done
 
 # Compile the result
 echo "Compiling..."
-gcc -o tests $all_files
+gcc -o tests $all_files -g
 echo "Compilation finished."
 
 # Run the program
