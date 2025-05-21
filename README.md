@@ -1,7 +1,7 @@
-# Aria's Data Structures
+#Data Structures
 
 ## Overview
-Aria's Data Structures is a C library providing efficient implementations of common data structures, accessible via a single header file `datastructures.h`. This library is ideal for educational purposes and for use in C projects that require basic data structure implementations.
+Data Structures is a C library providing efficient implementations of common data structures, accessible via a single header file `datastructures.h`. This library was created for educational purposes. Do not use it in production code.
 
 ## Features
 - **Hash Table**: Efficient key-value storage.
